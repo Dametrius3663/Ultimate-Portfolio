@@ -2,6 +2,20 @@
     --primary-color: #dbeafe;
     --secondary-color: #60a5fa;
     --bg-color: #060d24;
+    --tl-cards: #35467d;
+
+  /* Define base font sizes for different headings */
+    --h1-font-size-min: 2rem;   /* Minimum font size for h1 */
+    --h1-font-size-max: 4.5rem; /* Maximum font size for h1 */
+    --h1-font-size-vw: 5vw;   /* Preferred font size based on viewport width */
+
+    --h2-font-size-min: 1.5rem;
+    --h2-font-size-max: 3rem;
+    --h2-font-size-vw: 3.5vw;
+
+    --p-font-size-min: 1rem;
+    --p-font-size-max: 1.375rem; /* 22px / 16px = 1.375rem */
+    --p-font-size-vw: 1.25vw; /* 2.5vw is a common starting point, adjust as needed */
 }
 
 * {
@@ -35,13 +49,17 @@ footer {
     width: 100%;
 }
 
+.projImg {
+    display: none;
+}
+
 p, a {
-    font-size: 1rem;
+    font-size: clamp(var(--p-font-size-min), var(--p-font-size-vw), var(--p-font-size-max));
 }
 
 h1{
     color: var(--primary-color);
-    font-size: 36px;
+    font-size: clamp(var(--h1-font-size-min), var(--h1-font-size-vw), var(--h1-font-size-max));
 }
 
 header {
@@ -57,19 +75,12 @@ nav {
     justify-content: space-evenly;
 }
 
-
-nav a {
-    font-size: 1rem;
-}
-
-nav a, header a, .projectInfo a{
+nav a, header a, .content a{
     cursor: pointer;
     text-decoration: none;
-    
 }
 
-
-nav a:hover, header a:hover, .projectInfo a:hover {
+nav a:hover, header a:hover, .content a:hover {
     opacity: 0.7;
 }
 
@@ -78,13 +89,13 @@ nav a:hover, header a:hover, .projectInfo a:hover {
     flex-direction: row;
     align-items: center;
     margin: auto;
-    padding: 1.75rem;
+    padding: 1rem;
     border: solid var(--primary-color);
     border-width: 2px;
 }
 
 .titleBlock h1 {
-    font-size: 48px;
+    font-size: clamp(var(--h1-font-size-min), 4.8vw, 4.5rem);
 }
 
 .projectContainer {
@@ -131,10 +142,6 @@ nav a:hover, header a:hover, .projectInfo a:hover {
 .projectInfo h3 {
     font-size: 20px;
 }
-
-.projectInfo a:hover {
-    text-decoration: underline;
-}
  
 .projectItem > div:last-child {
     aspect-ratio: 16/9;
@@ -149,16 +156,50 @@ nav a:hover, header a:hover, .projectInfo a:hover {
     object-fit: cover;
 }
 
-main section {
+main {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 1rem;
+    align-items: center;
+}
+
+.guide {
+display: grid;
+grid-template-columns: repeat(1, minmax(0,1fr));
+gap: 25px;
+
+}
+.guideCard {
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 10px;
+width: fit-content;
+}
+
+.guideCard i{
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+}
+.guide a {
+    text-decoration: none;
+}
+
+.guideCard:hover {
+    padding: 5px;
+    opacity: 0.7;
+    i {
+       padding-left: 10px; 
+    }
     
-    padding-bottom: 64px;
 }
 
 footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }
 
 .footerImg {
@@ -206,13 +247,91 @@ footer {
     color: var(--primary-color);
 }
 
-@media screen and (min-width: 1000px) {
-    .projectContainer {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0,1fr));
-        gap: 32px;
+@media (min-width: 768px){
+
+header,
+main,
+footer {
+max-width: 700px;
 }
-    main {
-        max-width: 1000px
+
+nav a {
+    font-size: 1.25rem;
+  }
+
+h2 {
+    font-size: 2rem;
+}
+
+.projectTitle h3 {
+        font-size: 22px;
+    }
+
+  
+
+  .titleBlock {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: auto;
+      padding: 1.75rem;
+      border: solid var(--primary-color);
+      border-width: 2px;
+  }
+
+  .titleBlock h1 {
+      font-size: 4.5rem;
+  }
+
+  .projectContainer {
+   gap: 40px;
+}
+
+  .tenure {
+    font-size: large;
+  }
+}
+@media (min-width: 1200px) {
+  
+  header,
+  main,
+  footer { 
+    max-width: 1000px;
+  }
+  
+  .titleBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    padding: 1.75rem;
+    border: solid var(--primary-color);
+    border-width: 2px;
+  }
+
+  .projectContainer {
+   gap: 48px;
+}
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    .projectTitle h3 {
+        font-size: 24px;
+    }
+
+  .titleBlock h1 {
+      font-size: 5rem;
+  }
+
+  .tenure {
+    font-size: larger;
+}
+.guideCard:hover {
+    padding: 8px;
+    opacity: 0.7;
+    i {
+        padding-left: 25px; }
     }
 }
